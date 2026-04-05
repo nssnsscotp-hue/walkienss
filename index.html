@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NSS Command Radio</title>
+<title>NSS Command Radio - Admin</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
@@ -19,7 +19,6 @@ body{
   height:100vh;
 }
 
-/* CARD */
 .card{
   width:95%;
   max-width:420px;
@@ -32,38 +31,33 @@ body{
   border:1px solid rgba(255,255,255,0.08);
 }
 
-/* HEADER */
 .title{
   font-size:20px;
   font-weight:700;
   letter-spacing:2px;
-  margin-bottom:10px;
 }
 
 .subtitle{
   font-size:12px;
   color:#94a3b8;
+  margin-bottom:10px;
 }
 
-/* NETWORK */
 #network{
-  margin-top:10px;
   font-size:13px;
+  margin-bottom:10px;
 }
 
-/* SELECT */
 select{
   width:100%;
   padding:12px;
-  margin-top:15px;
   border-radius:12px;
   border:none;
   background:#020617;
   color:white;
-  outline:none;
+  margin-top:10px;
 }
 
-/* BUTTONS */
 .btn{
   width:100%;
   padding:14px;
@@ -72,14 +66,11 @@ select{
   border:none;
   font-weight:bold;
   font-size:15px;
-  letter-spacing:1px;
   transition:0.2s;
 }
 
-/* TALK BUTTON */
 #talkBtn{
   background:linear-gradient(45deg,#22c55e,#16a34a);
-  color:white;
 }
 
 #talkBtn:active{
@@ -87,10 +78,8 @@ select{
   box-shadow:0 0 20px #22c55e;
 }
 
-/* EMERGENCY */
 #emergencyBtn{
   background:linear-gradient(45deg,#ef4444,#b91c1c);
-  color:white;
 }
 
 #emergencyBtn:active{
@@ -98,10 +87,9 @@ select{
   box-shadow:0 0 25px red;
 }
 
-/* STATUS LIGHT */
 .status{
   margin-top:15px;
-  font-size:12px;
+  font-size:13px;
   color:#94a3b8;
 }
 </style>
@@ -112,7 +100,7 @@ select{
 <div class="card">
 
 <div class="title">📡 NSS COMMAND RADIO</div>
-<div class="subtitle">Secure Volunteer Communication</div>
+<div class="subtitle">Admin Control Panel</div>
 
 <div id="network">📶 Checking...</div>
 
@@ -123,7 +111,7 @@ select{
 </select>
 
 <button id="talkBtn" class="btn">🎤 HOLD TO TALK</button>
-<button id="emergencyBtn" class="btn">🚨 EMERGENCY BROADCAST</button>
+<button id="emergencyBtn" class="btn">🚨 EMERGENCY</button>
 
 <div class="status" id="statusText">Idle</div>
 
@@ -151,7 +139,8 @@ async function startRecording(mode="normal"){
       audio:{
         noiseSuppression:true,
         echoCancellation:true,
-        autoGainControl:true
+        autoGainControl:true,
+        sampleRate:16000   // 🔥 FIXED
       }
     });
   }catch(e){
@@ -165,9 +154,9 @@ async function startRecording(mode="normal"){
   input = audioContext.createMediaStreamSource(stream);
 
   const gainNode = audioContext.createGain();
-  gainNode.gain.value = 2;
+  gainNode.gain.value = 0.9;   // 🔥 FIXED (no noise boost)
 
-  processor = audioContext.createScriptProcessor(1024,1,1);
+  processor = audioContext.createScriptProcessor(2048,1,1); // 🔥 FIXED
 
   input.connect(gainNode);
   gainNode.connect(processor);
@@ -176,11 +165,17 @@ async function startRecording(mode="normal"){
   const channel = channelSelect.value;
 
   processor.onaudioprocess = (e)=>{
-    const floatData = e.inputBuffer.getChannelData(0);
+    let floatData = e.inputBuffer.getChannelData(0);
+
+    // 🔥 smoothing
+    for(let i=1;i<floatData.length;i++){
+      floatData[i] = (floatData[i] + floatData[i-1]) / 2;
+    }
+
     let intData = new Int16Array(floatData.length);
 
     for(let i=0;i<floatData.length;i++){
-      intData[i] = floatData[i]*32767;
+      intData[i] = Math.max(-1, Math.min(1, floatData[i])) * 32767;
     }
 
     if(mode==="emergency"){
@@ -209,24 +204,23 @@ function stopRecording(){
   statusText.innerText = "Idle";
 }
 
-// 📱 MOBILE TOUCH
+// MOBILE
 talkBtn.ontouchstart = ()=>startRecording("normal");
 talkBtn.ontouchend = stopRecording;
 
 emergencyBtn.ontouchstart = ()=>startRecording("emergency");
 emergencyBtn.ontouchend = stopRecording;
 
-// 🖱 DESKTOP
+// DESKTOP
 talkBtn.onmousedown = ()=>startRecording("normal");
 talkBtn.onmouseup = stopRecording;
 
 emergencyBtn.onmousedown = ()=>startRecording("emergency");
 emergencyBtn.onmouseup = stopRecording;
 
-// 📶 NETWORK CHECK
+// 📶 NETWORK
 function checkNetwork(){
   const start = Date.now();
-
   socket.emit("ping-check", start);
 
   socket.once("pong-check",(time)=>{
