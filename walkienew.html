@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSS Command Radio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  background:linear-gradient(135deg,#020617,#0f172a,#020617);
+  color:#e2e8f0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* CARD */
+.card{
+  width:95%;
+  max-width:420px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border-radius:25px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* HEADER */
+.title{
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  font-size:12px;
+  color:#94a3b8;
+}
+
+/* NETWORK */
+#network{
+  margin-top:10px;
+  font-size:13px;
+}
+
+/* SELECT */
+select{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border-radius:12px;
+  border:none;
+  background:#020617;
+  color:white;
+  outline:none;
+}
+
+/* BUTTONS */
+.btn{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border-radius:15px;
+  border:none;
+  font-weight:bold;
+  font-size:15px;
+  letter-spacing:1px;
+  transition:0.2s;
+}
+
+/* TALK BUTTON */
+#talkBtn{
+  background:linear-gradient(45deg,#22c55e,#16a34a);
+  color:white;
+}
+
+#talkBtn:active{
+  transform:scale(0.95);
+  box-shadow:0 0 20px #22c55e;
+}
+
+/* EMERGENCY */
+#emergencyBtn{
+  background:linear-gradient(45deg,#ef4444,#b91c1c);
+  color:white;
+}
+
+#emergencyBtn:active{
+  transform:scale(0.95);
+  box-shadow:0 0 25px red;
+}
+
+/* STATUS LIGHT */
+.status{
+  margin-top:15px;
+  font-size:12px;
+  color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="title">📡 NSS COMMAND RADIO</div>
+<div class="subtitle">Secure Volunteer Communication</div>
+
+<div id="network">📶 Checking...</div>
+
+<select id="channelSelect">
+<option value="A">Channel A</option>
+<option value="B">Channel B</option>
+<option value="C">Channel C</option>
+</select>
+
+<button id="talkBtn" class="btn">🎤 HOLD TO TALK</button>
+<button id="emergencyBtn" class="btn">🚨 EMERGENCY BROADCAST</button>
+
+<div class="status" id="statusText">Idle</div>
+
+</div>
+
+<script src="https://walkie-server-1xum.onrender.com/socket.io/socket.io.js"></script>
+
+<script>
+const socket = io("https://walkie-server-1xum.onrender.com");
+
+let audioContext, processor, input, stream;
+let isRecording = false;
+
+const talkBtn = document.getElementById("talkBtn");
+const emergencyBtn = document.getElementById("emergencyBtn");
+const channelSelect = document.getElementById("channelSelect");
+const statusText = document.getElementById("statusText");
+
+// 🎤 START RECORDING
+async function startRecording(mode="normal"){
+  if(isRecording) return;
+
+  try{
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio:{
+        noiseSuppression:true,
+        echoCancellation:true,
+        autoGainControl:true
+      }
+    });
+  }catch(e){
+    alert("Microphone permission denied!");
+    return;
+  }
+
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  await audioContext.resume();
+
+  input = audioContext.createMediaStreamSource(stream);
+
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = 2;
+
+  processor = audioContext.createScriptProcessor(1024,1,1);
+
+  input.connect(gainNode);
+  gainNode.connect(processor);
+  processor.connect(audioContext.destination);
+
+  const channel = channelSelect.value;
+
+  processor.onaudioprocess = (e)=>{
+    const floatData = e.inputBuffer.getChannelData(0);
+    let intData = new Int16Array(floatData.length);
+
+    for(let i=0;i<floatData.length;i++){
+      intData[i] = floatData[i]*32767;
+    }
+
+    if(mode==="emergency"){
+      socket.emit("emergency-stream", intData);
+    }else{
+      socket.emit("audio-stream",{
+        channel:channel,
+        audio:intData
+      });
+    }
+  };
+
+  isRecording = true;
+  statusText.innerText = mode==="emergency" ? "🚨 Emergency Broadcasting..." : "🎤 Transmitting...";
+}
+
+// ⏹ STOP
+function stopRecording(){
+  if(!isRecording) return;
+
+  if(processor) processor.disconnect();
+  if(input) input.disconnect();
+  if(stream) stream.getTracks().forEach(t=>t.stop());
+
+  isRecording = false;
+  statusText.innerText = "Idle";
+}
+
+// 📱 MOBILE TOUCH
+talkBtn.ontouchstart = ()=>startRecording("normal");
+talkBtn.ontouchend = stopRecording;
+
+emergencyBtn.ontouchstart = ()=>startRecording("emergency");
+emergencyBtn.ontouchend = stopRecording;
+
+// 🖱 DESKTOP
+talkBtn.onmousedown = ()=>startRecording("normal");
+talkBtn.onmouseup = stopRecording;
+
+emergencyBtn.onmousedown = ()=>startRecording("emergency");
+emergencyBtn.onmouseup = stopRecording;
+
+// 📶 NETWORK CHECK
+function checkNetwork(){
+  const start = Date.now();
+
+  socket.emit("ping-check", start);
+
+  socket.once("pong-check",(time)=>{
+    const latency = Date.now() - time;
+    const net = document.getElementById("network");
+
+    if(latency < 100){
+      net.innerText = "📶 Strong ("+latency+"ms)";
+      net.style.color = "#22c55e";
+    }else if(latency < 300){
+      net.innerText = "📶 Medium ("+latency+"ms)";
+      net.style.color = "#facc15";
+    }else{
+      net.innerText = "📶 Weak ("+latency+"ms)";
+      net.style.color = "#ef4444";
+    }
+  });
+}
+
+setInterval(checkNetwork,3000);
+</script>
+
+</body>
+</html>
