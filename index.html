@@ -1,247 +1,955 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NSS Command Radio - Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <title>Privacy Policy | NSS College Ottapalam App</title>
 
-<style>
-body{
-  margin:0;
-  font-family:'Orbitron',sans-serif;
-  background:linear-gradient(135deg,#020617,#0f172a,#020617);
-  color:#e2e8f0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
+  <meta name="description"
+        content="Privacy Policy and Account Deletion Request portal for NSS College Ottapalam App.">
 
-.card{
-  width:95%;
-  max-width:420px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-  border-radius:25px;
-  padding:25px;
-  text-align:center;
-  box-shadow:0 0 40px rgba(0,0,0,0.6);
-  border:1px solid rgba(255,255,255,0.08);
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.title{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:2px;
-}
+    :root {
+      --primary: #7b1022;
+      --primary-dark: #570817;
+      --secondary: #a91e35;
+      --background: #f5f6f8;
+      --white: #ffffff;
+      --text: #252525;
+      --muted: #6c757d;
+      --border: #e1e4e8;
+      --success: #18864b;
+      --danger: #c62828;
+      --warning: #d98200;
+    }
 
-.subtitle{
-  font-size:12px;
-  color:#94a3b8;
-  margin-bottom:10px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-#network{
-  font-size:13px;
-  margin-bottom:10px;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-select{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  background:#020617;
-  color:white;
-  margin-top:10px;
-}
+    /* HEADER */
 
-.btn{
-  width:100%;
-  padding:14px;
-  margin-top:15px;
-  border-radius:15px;
-  border:none;
-  font-weight:bold;
-  font-size:15px;
-  transition:0.2s;
-}
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 45px 20px;
+      text-align: center;
+    }
 
-#talkBtn{
-  background:linear-gradient(45deg,#22c55e,#16a34a);
-}
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
 
-#talkBtn:active{
-  transform:scale(0.95);
-  box-shadow:0 0 20px #22c55e;
-}
+    header h2 {
+      font-size: 18px;
+      font-weight: normal;
+      opacity: 0.95;
+    }
 
-#emergencyBtn{
-  background:linear-gradient(45deg,#ef4444,#b91c1c);
-}
+    header p {
+      margin-top: 12px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
 
-#emergencyBtn:active{
-  transform:scale(0.95);
-  box-shadow:0 0 25px red;
-}
+    /* NAVIGATION */
 
-.status{
-  margin-top:15px;
-  font-size:13px;
-  color:#94a3b8;
-}
-</style>
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 14px 18px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: #faf0f2;
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 950px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 3px 12px rgba(0,0,0,.04);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: var(--primary-dark);
+      margin-top: 25px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    ul {
+      margin-left: 22px;
+      margin-bottom: 15px;
+    }
+
+    /* INFO BOX */
+
+    .info-box {
+      padding: 15px;
+      background: #fff7f8;
+      border-left: 4px solid var(--primary);
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    /* FORMS */
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccd0d5;
+      border-radius: 7px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(123,16,34,.08);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      margin-top: 6px;
+    }
+
+    .checkbox-row label {
+      font-weight: normal;
+    }
+
+    button {
+      border: none;
+      background: var(--primary);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 7px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+
+    .danger-btn {
+      background: var(--danger);
+    }
+
+    .secondary-btn {
+      background: #555;
+    }
+
+    /* ALERT */
+
+    .alert {
+      padding: 14px;
+      margin-top: 18px;
+      border-radius: 7px;
+      display: none;
+    }
+
+    .success {
+      display: block;
+      background: #eaf8f0;
+      color: #12693a;
+      border: 1px solid #bde5ce;
+    }
+
+    .error {
+      display: block;
+      background: #fdecec;
+      color: #a61d1d;
+      border: 1px solid #efc1c1;
+    }
+
+    /* ADMIN */
+
+    #adminDashboard {
+      display: none;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--border);
+      padding: 11px;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f7f7f7;
+      color: var(--primary-dark);
+    }
+
+    .status {
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .status-pending {
+      background: #fff1cf;
+      color: #895900;
+    }
+
+    .status-approved {
+      background: #e5f5eb;
+      color: #176c3c;
+    }
+
+    .small-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+      margin: 2px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #252525;
+      color: #ddd;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      nav a {
+        padding: 11px;
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="card">
+<header>
+  <h1>NSS College Ottapalam</h1>
+  <h2>College App Privacy & Data Protection Portal</h2>
+  <p>Privacy Policy • Student Data • Account Deletion</p>
+</header>
 
-<div class="title">📡 NSS COMMAND RADIO</div>
-<div class="subtitle">Admin Control Panel</div>
+<nav>
+  <div class="nav-inner">
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#deletion">Delete Account</a>
+    <a href="#contact">Contact</a>
+    <a href="#admin">Admin</a>
+  </div>
+</nav>
 
-<div id="network">📶 Checking...</div>
+<main>
 
-<select id="channelSelect">
-<option value="A">Channel A</option>
-<option value="B">Channel B</option>
-<option value="C">Channel C</option>
-</select>
+  <!-- PRIVACY POLICY -->
 
-<button id="talkBtn" class="btn">🎤 HOLD TO TALK</button>
-<button id="emergencyBtn" class="btn">🚨 EMERGENCY</button>
+  <section id="privacy" class="card">
 
-<div class="status" id="statusText">Idle</div>
+    <h2>Privacy Policy</h2>
 
-</div>
+    <p>
+      This Privacy Policy explains how the NSS College Ottapalam App
+      collects, uses, stores and protects information provided by students,
+      teachers and other authorised users.
+    </p>
 
-<script src="https://walkie-server-1xum.onrender.com/socket.io/socket.io.js"></script>
+    <p>
+      By using the application, users acknowledge the practices described
+      in this Privacy Policy.
+    </p>
+
+    <div class="info-box">
+      <strong>Institution:</strong> NSS College Ottapalam<br>
+      <strong>Application:</strong> NSS College Ottapalam App<br>
+      <strong>Last Updated:</strong> 02 October 2026
+    </div>
+
+    <h3>1. Information We Collect</h3>
+
+    <p>
+      Depending on the services used in the application, we may collect
+      information including:
+    </p>
+
+    <ul>
+      <li>Student full name</li>
+      <li>University Register Number</li>
+      <li>Email address</li>
+      <li>Mobile number</li>
+      <li>Department and programme</li>
+      <li>Semester and year of study</li>
+      <li>Course registration information</li>
+      <li>Attendance information</li>
+      <li>Academic and timetable-related information</li>
+      <li>Account and authentication information</li>
+      <li>Requests, complaints and feedback submitted through the app</li>
+    </ul>
+
+    <h3>2. How We Use Information</h3>
+
+    <p>The collected information may be used to:</p>
+
+    <ul>
+      <li>Provide access to authorised application features.</li>
+      <li>Maintain student and academic records used by the application.</li>
+      <li>Manage attendance and course information.</li>
+      <li>Display personalised academic information.</li>
+      <li>Provide notices, circulars and institutional updates.</li>
+      <li>Respond to requests, complaints and feedback.</li>
+      <li>Maintain the security and reliability of the application.</li>
+    </ul>
+
+    <h3>3. Data Sharing</h3>
+
+    <p>
+      Personal information is intended for authorised institutional and
+      application-related purposes. Information may also be processed by
+      service providers used to operate the application where necessary.
+    </p>
+
+    <p>
+      Information may be disclosed where required by applicable law,
+      regulation or a lawful request from an authorised authority.
+    </p>
+
+    <h3>4. Data Security</h3>
+
+    <p>
+      Reasonable administrative and technical safeguards are used to
+      protect information against unauthorised access, alteration,
+      disclosure or loss.
+    </p>
+
+    <p>
+      However, no internet-connected information system can guarantee
+      absolute security.
+    </p>
+
+    <h3>5. Data Retention</h3>
+
+    <p>
+      Personal information is retained for as long as reasonably necessary
+      for the purposes for which it was collected, institutional
+      requirements, academic record requirements, security, or applicable
+      legal obligations.
+    </p>
+
+    <h3>6. Account and Data Deletion</h3>
+
+    <p>
+      Users may submit an account deletion request using the form provided
+      on this page.
+    </p>
+
+    <p>
+      The institution may verify the identity of the requester before
+      processing a deletion request. Certain information may need to be
+      retained where required for legitimate academic, administrative,
+      security or legal record-keeping purposes.
+    </p>
+
+    <h3>7. Third-Party Services</h3>
+
+    <p>
+      The application may use third-party infrastructure or services for
+      functions such as database storage, file storage, authentication,
+      notifications and application hosting.
+    </p>
+
+    <h3>8. Changes to this Privacy Policy</h3>
+
+    <p>
+      This Privacy Policy may be updated when application features,
+      information practices or applicable requirements change.
+    </p>
+
+    <h3>9. Contact</h3>
+
+    <p>
+      Questions regarding privacy or deletion of information may be
+      submitted to the institution or through the account deletion form
+      below.
+    </p>
+
+  </section>
+
+
+  <!-- ACCOUNT DELETION -->
+
+  <section id="deletion" class="card">
+
+    <h2>Request Account Deletion</h2>
+
+    <p>
+      Students who wish to request deletion of their app account and
+      associated personal information can submit the following form.
+    </p>
+
+    <div class="info-box">
+      Your request may be verified before deletion is processed.
+      Submission of this form does not automatically delete academic
+      records that the institution is required to retain.
+    </div>
+
+    <form id="deletionForm">
+
+      <div class="form-group">
+        <label for="studentName">Student Full Name *</label>
+        <input
+          type="text"
+          id="studentName"
+          placeholder="Enter full name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="registerNumber">
+          University Register Number *
+        </label>
+
+        <input
+          type="text"
+          id="registerNumber"
+          placeholder="Enter University Register Number"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Registered Email ID *</label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter registered email address"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number *</label>
+
+        <input
+          type="tel"
+          id="mobile"
+          placeholder="Enter mobile number"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="department">Department *</label>
+
+        <select id="department" required>
+          <option value="">Select Department</option>
+
+          <option>Commerce</option>
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Malayalam</option>
+          <option>Economics</option>
+          <option>History</option>
+          <option>Botany</option>
+          <option>Chemistry</option>
+          <option>Computer Science</option>
+          <option>Industrial Chemistry</option>
+          <option>Mathematics</option>
+          <option>Physics</option>
+          <option>Zoology</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="programme">Programme / Course *</label>
+
+        <input
+          type="text"
+          id="programme"
+          placeholder="Example: B.Com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="semester">Semester</label>
+
+        <select id="semester">
+          <option value="">Select Semester</option>
+          <option>Semester 1</option>
+          <option>Semester 2</option>
+          <option>Semester 3</option>
+          <option>Semester 4</option>
+          <option>Semester 5</option>
+          <option>Semester 6</option>
+          <option>Semester 7</option>
+          <option>Semester 8</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="reason">Reason for Account Deletion</label>
+
+        <textarea
+          id="reason"
+          placeholder="Please tell us why you want to delete your account (optional)."
+        ></textarea>
+      </div>
+
+      <div class="checkbox-row">
+
+        <input
+          type="checkbox"
+          id="confirmDelete"
+          required
+        >
+
+        <label for="confirmDelete">
+          I confirm that I am requesting deletion of my NSS College
+          Ottapalam App account and understand that my identity may be
+          verified before the request is processed.
+        </label>
+
+      </div>
+
+      <button type="submit">
+        Submit Deletion Request
+      </button>
+
+      <div id="deletionMessage" class="alert"></div>
+
+    </form>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact" class="card">
+
+    <h2>Privacy & Account Support</h2>
+
+    <p>
+      For questions regarding your account, personal information or an
+      account deletion request, please contact the authorised college/app
+      administrator.
+    </p>
+
+    <p>
+      <strong>Institution:</strong><br>
+      NSS College Ottapalam
+    </p>
+
+  </section>
+
+
+  <!-- ADMIN -->
+
+  <section id="admin" class="card">
+
+    <div id="adminLogin">
+
+      <h2>Super Admin Login</h2>
+
+      <p>
+        This section is intended only for authorised administrators.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="adminUsername">Username</label>
+
+          <input
+            type="text"
+            id="adminUsername"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+
+          <label for="adminPassword">Password</label>
+
+          <input
+            type="password"
+            id="adminPassword"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+        <button type="submit">
+          Login
+        </button>
+
+        <div id="loginMessage" class="alert"></div>
+
+      </form>
+
+    </div>
+
+
+    <!-- ADMIN DASHBOARD -->
+
+    <div id="adminDashboard">
+
+      <div class="admin-header">
+
+        <div>
+          <h2>Super Admin Dashboard</h2>
+          <p>Account Deletion Requests</p>
+        </div>
+
+        <button
+          class="secondary-btn"
+          onclick="logoutAdmin()">
+          Logout
+        </button>
+
+      </div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Register No.</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Department</th>
+              <th>Programme</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="requestsTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <p
+        id="noRequests"
+        style="text-align:center; margin-top:25px; color:#777;">
+        No account deletion requests found.
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <p>
+    <strong>NSS College Ottapalam</strong>
+  </p>
+
+  <p>
+    Privacy Policy & Account Deletion Portal
+  </p>
+
+  <p style="font-size:12px; margin-top:8px;">
+    © 2026 NSS College Ottapalam. All rights reserved.
+  </p>
+
+</footer>
+
 
 <script>
-const socket = io("https://walkie-server-1xum.onrender.com");
 
-let audioContext, processor, input, stream;
-let isRecording = false;
+  /*
+    ==========================================================
+    IMPORTANT
+    ==========================================================
 
-const talkBtn = document.getElementById("talkBtn");
-const emergencyBtn = document.getElementById("emergencyBtn");
-const channelSelect = document.getElementById("channelSelect");
-const statusText = document.getElementById("statusText");
+    This is a DEMO HTML-only login.
 
-// 🎤 START RECORDING
-async function startRecording(mode="normal"){
-  if(isRecording) return;
+    Never use hard-coded passwords in a production website.
+    Anyone can inspect the JavaScript source.
 
-  try{
-    stream = await navigator.mediaDevices.getUserMedia({
-      audio:{
-        noiseSuppression:true,
-        echoCancellation:true,
-        autoGainControl:true,
-        sampleRate:16000   // 🔥 FIXED
-      }
-    });
-  }catch(e){
-    alert("Microphone permission denied!");
-    return;
-  }
+    For production:
+    - Use Supabase Authentication or another backend.
+    - Store password hashes securely.
+    - Apply database Row Level Security.
+    - Restrict admin operations server-side.
+  */
 
-  audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  await audioContext.resume();
 
-  input = audioContext.createMediaStreamSource(stream);
+  // ---------------------------------------------------------
+  // DEMO ADMIN CREDENTIALS
+  // ---------------------------------------------------------
 
-  const gainNode = audioContext.createGain();
-  gainNode.gain.value = 0.9;   // 🔥 FIXED (no noise boost)
+  const ADMIN_USERNAME = "Admin";
 
-  processor = audioContext.createScriptProcessor(2048,1,1); // 🔥 FIXED
+  // Requested demo password.
+  // DO NOT use client-side passwords in production.
+  const ADMIN_PASSWORD = "Abhi48";
 
-  input.connect(gainNode);
-  gainNode.connect(processor);
-  processor.connect(audioContext.destination);
 
-  const channel = channelSelect.value;
+  // ---------------------------------------------------------
+  // ACCOUNT DELETION FORM
+  // ---------------------------------------------------------
 
-  processor.onaudioprocess = (e)=>{
-    let floatData = e.inputBuffer.getChannelData(0);
+  const deletionForm =
+    document.getElementById("deletionForm");
 
-    // 🔥 smoothing
-    for(let i=1;i<floatData.length;i++){
-      floatData[i] = (floatData[i] + floatData[i-1]) / 2;
-    }
+  deletionForm.addEventListener(
+    "submit",
+    function(event) {
 
-    let intData = new Int16Array(floatData.length);
+      event.preventDefault();
 
-    for(let i=0;i<floatData.length;i++){
-      intData[i] = Math.max(-1, Math.min(1, floatData[i])) * 32767;
-    }
 
-    if(mode==="emergency"){
-      socket.emit("emergency-stream", intData);
-    }else{
-      socket.emit("audio-stream",{
-        channel:channel,
-        audio:intData
-      });
-    }
-  };
+      const requestId =
+        "DEL-" +
+        Date.now()
+          .toString()
+          .slice(-8);
 
-  isRecording = true;
-  statusText.innerText = mode==="emergency" ? "🚨 Emergency Broadcasting..." : "🎤 Transmitting...";
-}
 
-// ⏹ STOP
-function stopRecording(){
-  if(!isRecording) return;
+      const request = {
 
-  if(processor) processor.disconnect();
-  if(input) input.disconnect();
-  if(stream) stream.getTracks().forEach(t=>t.stop());
+        id: requestId,
 
-  isRecording = false;
-  statusText.innerText = "Idle";
-}
+        date:
+          new Date()
+            .toLocaleString(),
 
-// MOBILE
-talkBtn.ontouchstart = ()=>startRecording("normal");
-talkBtn.ontouchend = stopRecording;
+        name:
+          document
+            .getElementById("studentName")
+            .value
+            .trim(),
 
-emergencyBtn.ontouchstart = ()=>startRecording("emergency");
-emergencyBtn.ontouchend = stopRecording;
+        registerNumber:
+          document
+            .getElementById("registerNumber")
+            .value
+            .trim(),
 
-// DESKTOP
-talkBtn.onmousedown = ()=>startRecording("normal");
-talkBtn.onmouseup = stopRecording;
+        email:
+          document
+            .getElementById("email")
+            .value
+            .trim(),
 
-emergencyBtn.onmousedown = ()=>startRecording("emergency");
-emergencyBtn.onmouseup = stopRecording;
+        mobile:
+          document
+            .getElementById("mobile")
+            .value
+            .trim(),
 
-// 📶 NETWORK
-function checkNetwork(){
-  const start = Date.now();
-  socket.emit("ping-check", start);
+        department:
+          document
+            .getElementById("department")
+            .value,
 
-  socket.once("pong-check",(time)=>{
-    const latency = Date.now() - time;
-    const net = document.getElementById("network");
+        programme:
+          document
+            .getElementById("programme")
+            .value
+            .trim(),
 
-    if(latency < 100){
-      net.innerText = "📶 Strong ("+latency+"ms)";
-      net.style.color = "#22c55e";
-    }else if(latency < 300){
-      net.innerText = "📶 Medium ("+latency+"ms)";
-      net.style.color = "#facc15";
-    }else{
-      net.innerText = "📶 Weak ("+latency+"ms)";
-      net.style.color = "#ef4444";
-    }
+        semester:
+          document
+            .getElementById("semester")
+            .value,
+
+        reason:
+          document
+            .getElementById("reason")
+            .value
+            .trim(),
+
+        status: "Pending"
+
+      };
+
+
+      let requests =
+        JSON.parse(
+          localStorage.getItem(
+            "accountDeletionRequests"
+          )
+        ) || [];
+
+
+      requests.unshift(request);
+
+
+      localStorage.setItem(
+        "accountDeletionRequests",
+        JSON.stringify(requests)
+      );
+
+
+      const message =
+        document.getElementById(
+          "deletionMessage"
+        );
+
+
+      message.className =
+        "alert success";
+
+
+      message.innerHTML =
+        "<strong>Request submitted successfully.</strong><br>" +
+        "Your Request ID is <strong>" +
+        escapeHTML(requestId) +
+        "</strong>. Please keep this number for reference.";
+
+
+      deletionForm.reset();
+
   });
-}
 
-setInterval(checkNetwork,3000);
-</script>
 
-</body>
-</html>
+  // ---------------------------------------------------------
+  // ADMIN LOGIN
+  // ---------------------------------------------------------
+
+  document
+    .getElementById("loginForm")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const username =
+          document
+            .getElementById("adminUsername")
+            .value;
+
+        const password =
+          document
+            .
